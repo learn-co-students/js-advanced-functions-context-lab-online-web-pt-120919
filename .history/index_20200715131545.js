@@ -39,18 +39,6 @@ function hoursWorkedOnDate(date) {
     return parseInt(foundOut.hour - foundIn.hour) / 100
 }
 
-function wagesEarnedOnDate(date)  {
-    return hoursWorkedOnDate.call(this, date) * this.payPerHour
-}
-
-function calculatePayroll(employees) {
-    let result = employees.map(employee => allWagesFor.call(employee))
-    return result.reduce((accum, num) => num + accum)
-}
-
-function findEmployeeByFirstName(employees, name){
-    return employees.find(emp => emp.firstName === name)
-}
 
 /*
  We're giving you this function. Take a look at it, you might see some usage
