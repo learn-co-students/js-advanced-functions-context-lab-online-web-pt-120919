@@ -39,17 +39,22 @@ function hoursWorkedOnDate(date) {
     return parseInt(foundOut.hour - foundIn.hour) / 100
 }
 
+let guy = {
+    firstName: 'Simba',
+    familyName: '',
+    title: 'King',
+    payPerHour: 100,
+    timeInEvents: [
+      { type: 'TimeIn', hour: 900, date: '2019-01-01' },
+      { type: 'TimeIn', hour: 1000, date: '2019-01-02' }
+    ],
+    timeOutEvents: [
+      { type: 'TimeOut', hour: 1300, date: '2019-01-01' },
+      { type: 'TimeOut', hour: 1300, date: '2019-01-02' }
+    ]
+  }
 function wagesEarnedOnDate(date)  {
     return hoursWorkedOnDate.call(this, date) * this.payPerHour
-}
-
-function calculatePayroll(employees) {
-    let result = employees.map(employee => allWagesFor.call(employee))
-    return result.reduce((accum, num) => num + accum)
-}
-
-function findEmployeeByFirstName(employees, name){
-    return employees.find(emp => emp.firstName === name)
 }
 
 /*

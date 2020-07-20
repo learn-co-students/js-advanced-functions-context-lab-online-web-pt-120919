@@ -40,16 +40,10 @@ function hoursWorkedOnDate(date) {
 }
 
 function wagesEarnedOnDate(date)  {
-    return hoursWorkedOnDate.call(this, date) * this.payPerHour
-}
-
-function calculatePayroll(employees) {
-    let result = employees.map(employee => allWagesFor.call(employee))
-    return result.reduce((accum, num) => num + accum)
-}
-
-function findEmployeeByFirstName(employees, name){
-    return employees.find(emp => emp.firstName === name)
+    for (const keys in this) {
+        console.log(this.keys)
+    }
+    // console.log(this.timeInEvents.map(returnedDate => returnedDate === date))
 }
 
 /*

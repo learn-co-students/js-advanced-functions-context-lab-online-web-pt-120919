@@ -34,23 +34,9 @@ function createTimeOutEvent(timeOut) {
 }
 
 function hoursWorkedOnDate(date) {
-    let foundIn = this.timeInEvents.find(day => day.date === date)
-    let foundOut = this.timeOutEvents.find(day => day.date === date)
-    return parseInt(foundOut.hour - foundIn.hour) / 100
+    return this.find(employee => employee.timeInEvents === date)
 }
 
-function wagesEarnedOnDate(date)  {
-    return hoursWorkedOnDate.call(this, date) * this.payPerHour
-}
-
-function calculatePayroll(employees) {
-    let result = employees.map(employee => allWagesFor.call(employee))
-    return result.reduce((accum, num) => num + accum)
-}
-
-function findEmployeeByFirstName(employees, name){
-    return employees.find(emp => emp.firstName === name)
-}
 
 /*
  We're giving you this function. Take a look at it, you might see some usage

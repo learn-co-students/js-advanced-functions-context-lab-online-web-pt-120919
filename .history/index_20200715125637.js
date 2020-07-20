@@ -18,40 +18,14 @@ let createEmployeeRecords = function(arrOfArrays) {
     return results
 }
 
-function createTimeInEvent(timeIn) {
-    this.timeInEvents.push({
-        type: "TimeIn",
-        hour: parseInt(timeIn.split(" ")[1]),
-        date: timeIn.split(" ")[0]})
-    return this
+let createTimeInEvent = (timeIn) => {
+    console.log(employee, timeIn)
+    // this.timeInEvents.push({
+    //     type: "TimeIn",
+    //     hour: timeIn.slice(2),
+    //     date: timeIn.slice(0,1)})
+    // return this
 }
-function createTimeOutEvent(timeOut) {
-    this.timeOutEvents.push({
-        type: "TimeOut",
-        hour: parseInt(timeOut.split(" ")[1]),
-        date: timeOut.split(" ")[0]})
-    return this
-}
-
-function hoursWorkedOnDate(date) {
-    let foundIn = this.timeInEvents.find(day => day.date === date)
-    let foundOut = this.timeOutEvents.find(day => day.date === date)
-    return parseInt(foundOut.hour - foundIn.hour) / 100
-}
-
-function wagesEarnedOnDate(date)  {
-    return hoursWorkedOnDate.call(this, date) * this.payPerHour
-}
-
-function calculatePayroll(employees) {
-    let result = employees.map(employee => allWagesFor.call(employee))
-    return result.reduce((accum, num) => num + accum)
-}
-
-function findEmployeeByFirstName(employees, name){
-    return employees.find(emp => emp.firstName === name)
-}
-
 /*
  We're giving you this function. Take a look at it, you might see some usage
  that's new and different. That's because we're avoiding a well-known, but
