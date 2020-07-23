@@ -17,7 +17,7 @@ let createEmployeeRecords = function(record){
     } )
 }
 
-let createTimeinEvent = function(dateStamp){
+let createTimeInEvent = function(dateStamp){
     let [date, hour] = dateStamp.split(' ')
 
     this.timeInEvents.push({
@@ -40,7 +40,44 @@ let createTimeOutEvent = function(dateStamp){
     return this
 }
 
+let hoursWorkedOnDate = function(givenDate){
+   let inEvent = this.timeInEvents.find(function(e){
+       return e.date === givenDate
+   })
 
+    let outEvent = this.timeOutEvents.find(function(e){
+           return e.date === givenDate
+    })
+
+    return (outEvent.hour - inEvent.hour)/100
+}
+
+let wagesEarnedOnDate = function(givenDate){
+    let pay = hoursWorkedOnDate.call(this, givenDate) * this.payPerHour
+        return pay
+}
+
+let allWagesFor = function(){
+    let allDates = this.timeInEvents.map(function(e){ 
+        return e.date
+})
+    
+    let pay = allDates.reduce(function(memo, d){
+    return memo + wagesEarnedOnDate.call(this, d)}.bind(this), 0)
+        return pay
+}
+
+let findEmployeeByFirstName = function(srcArray, firstName){
+    return srcArray.find(function(e){
+        return e.firstName === firstName
+    })
+}
+
+let calculatePayroll = function(array){
+    return array.reduce(function(memo, r){
+        return memo + allWagesFor.call(r)
+    }, 0)
+}
 
 /*
  We're giving you this function. Take a look at it, you might see some usage
@@ -51,14 +88,14 @@ let createTimeOutEvent = function(dateStamp){
  for you to use if you need it!
  */
 
-let allWagesFor = function () {
-    let eligibleDates = this.timeInEvents.map(function (e) {
-        return e.date
-    })
+// let allWagesFor = function () {
+//     let eligibleDates = this.timeInEvents.map(function (e) {
+//         return e.date
+//     })
 
-    let payable = eligibleDates.reduce(function (memo, d) {
-        return memo + wagesEarnedOnDate.call(this, d)
-    }.bind(this), 0) // <== Hm, why did we need to add bind() there? We'll discuss soon!
+//     let payable = eligibleDates.reduce(function (memo, d) {
+//         return memo + wagesEarnedOnDate.call(this, d)
+//     }.bind(this), 0) // <== Hm, why did we need to add bind() there? We'll discuss soon!
 
-    return payable
-}
+//     return payable
+// }
